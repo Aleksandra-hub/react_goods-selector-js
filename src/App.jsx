@@ -19,7 +19,10 @@ export const goods = [
 export const App = () => {
   const [stateMessege, setStateMessege] = useState(false);
   const [goodName, setGood] = useState('Jam');
-  let id = 0;
+  const reset = () => {
+    setGood('');
+    setStateMessege(true);
+  };
 
   return (
     <main className="section container">
@@ -36,10 +39,7 @@ export const App = () => {
             data-cy="ClearButton"
             type="button"
             className="delete ml-3"
-            onClick={() => {
-              setStateMessege(true);
-              setGood('');
-            }}
+            onClick={reset}
           />
         </h1>
       )}
@@ -47,11 +47,9 @@ export const App = () => {
       <table className="table">
         <tbody>
           {goods.map(good => {
-            id += 1;
-
             return (
               <tr
-                key={id}
+                key={good}
                 data-cy="Good"
                 className={classNames('', {
                   'has-background-success-light': goodName === good,
@@ -81,10 +79,7 @@ export const App = () => {
                       data-cy="RemoveButton"
                       type="button"
                       className="button is-info"
-                      onClick={() => {
-                        setGood('');
-                        setStateMessege(true);
-                      }}
+                      onClick={reset}
                     >
                       -
                     </button>
