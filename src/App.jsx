@@ -17,32 +17,26 @@ export const goods = [
 ];
 
 export const App = () => {
-  const [stateMessege, setStateMessege] = useState(false);
+  // const [stateMessege, setStateMessege] = useState(false);
   const [goodName, setGood] = useState('Jam');
   const reset = () => {
-    setGood('');
-    setStateMessege(true);
+    setGood(null);
+    // setStateMessege(true);
   };
 
   return (
     <main className="section container">
-      {stateMessege && (
-        <h1 className="title is-flex is-align-items-center ">
-          No goods selected
-        </h1>
-      )}
-
-      {!stateMessege && (
-        <h1 className="title is-flex is-align-items-center">
-          {goodName} is selected
+      <h1 className="title is-flex is-align-items-center">
+        {goodName ? `${goodName} is selected` : 'No goods selected'}
+        {goodName && (
           <button
             data-cy="ClearButton"
             type="button"
             className="delete ml-3"
             onClick={reset}
           />
-        </h1>
-      )}
+        )}
+      </h1>
 
       <table className="table">
         <tbody>
@@ -65,7 +59,7 @@ export const App = () => {
                       className="button"
                       onClick={() => {
                         setGood(good);
-                        setStateMessege(false);
+                        // setStateMessege(false);
                       }}
                     >
                       +
